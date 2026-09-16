@@ -1,20 +1,38 @@
-let productName:string = "Book";
-let price:number = 20;
-let discountAvailable:boolean = true;
+let product: string = 123;
+console.log(product);
 
-console.log(productName, price, discountAvailable)
+let names: string[] = [
+  "maxamed",
+  "Faarax",
+  "Cismaan"
+];
+console.log(names);
 
-function getDiscount(price:number, discount:number){
-  return price - price * discount;
-}
-console.log(getDiscount(22, 12))
+let numbers: number[] = [
+  1, 2, 3, 4, 5, 6
+];
+console.log(numbers);
 
+let status: boolean[] = [
+  true, false, true, false
+];
 
-function printLength(x:unknown):void{
-  console.log(x?.toString().length?? 0);
-}
+let products:string[] = [
+  "phone", "laptop", 99
+]
+console.log(products);
 
-printLength("Hello");
-printLength(123);
+type LocationTuple = [
+  { city: string },
+  { latitude: number },
+  { longitude: number }
+];
 
-export{}
+let location: LocationTuple = [
+  { city: "Mogadishu" },
+  { latitude: 2.0469 },
+  { longitude: 45.3182 }
+];
+console.log(location)
+
+export {};
