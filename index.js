@@ -1,26 +1,19 @@
-let product = 123;
-console.log(product);
-let names = [
-    "maxamed",
-    "Faarax",
-    "Cismaan"
-];
-console.log(names);
-let numbers = [
-    1, 2, 3, 4, 5, 6
-];
-console.log(numbers);
-let status = [
-    true, false, true, false
-];
-let products = [
-    "phone", "laptop", 99
-];
-console.log(products);
-let location = [
-    { city: "Mogadishu" },
-    { latitude: 2.0469 },
-    { longitude: 45.3182 }
-];
-console.log(location);
+function fullName(first, last) {
+    return first + " " + last;
+}
+const name = fullName("maxamed", "c.qaadir");
+console.log(name);
+function registerUser(username, isAdmin, language = "en") {
+    console.log(`Username: ${username}, Is Admin: ${isAdmin}, Language: ${language}`);
+}
+registerUser("maxamed", true);
+function average(...scores) {
+    if (scores.length === 0)
+        return 0;
+    const total = scores.reduce((sum, score) => sum + score, 0);
+    return total / scores.length;
+}
+// Testing with 3-5 values:
+console.log(average(85, 90, 95));
+console.log(average(100, 80, 60, 40, 70));
 export {};

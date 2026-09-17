@@ -1,38 +1,29 @@
-let product: string = 123;
-console.log(product);
+function fullName(first: string, last: string): string {
+  return first + " " + last;
+}
+const name = fullName("maxamed", "c.qaadir")
+console.log(name)
 
-let names: string[] = [
-  "maxamed",
-  "Faarax",
-  "Cismaan"
-];
-console.log(names);
 
-let numbers: number[] = [
-  1, 2, 3, 4, 5, 6
-];
-console.log(numbers);
+function registerUser(
+  username: string, 
+  isAdmin?: boolean, 
+  language: string = "en"
+): void {
+  console.log(`Username: ${username}, Is Admin: ${isAdmin}, Language: ${language}`);
+}
 
-let status: boolean[] = [
-  true, false, true, false
-];
+registerUser("maxamed", true)
 
-let products:string[] = [
-  "phone", "laptop", 99
-]
-console.log(products);
 
-type LocationTuple = [
-  { city: string },
-  { latitude: number },
-  { longitude: number }
-];
+function average(...scores: number[]): number {
+  if (scores.length === 0) return 0;
+  const total = scores.reduce((sum, score) => sum + score, 0);
+  return total / scores.length;
+}
 
-let location: LocationTuple = [
-  { city: "Mogadishu" },
-  { latitude: 2.0469 },
-  { longitude: 45.3182 }
-];
-console.log(location)
+// Testing with 3-5 values:
+console.log(average(85, 90, 95));             
+console.log(average(100, 80, 60, 40, 70));     
 
 export {};
