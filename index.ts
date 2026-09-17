@@ -1,29 +1,58 @@
-function fullName(first: string, last: string): string {
-  return first + " " + last;
-}
-const name = fullName("maxamed", "c.qaadir")
-console.log(name)
-
-
-function registerUser(
-  username: string, 
-  isAdmin?: boolean, 
-  language: string = "en"
-): void {
-  console.log(`Username: ${username}, Is Admin: ${isAdmin}, Language: ${language}`);
+interface User {
+  username: string;
+  password: string;
 }
 
-registerUser("maxamed", true)
-
-
-function average(...scores: number[]): number {
-  if (scores.length === 0) return 0;
-  const total = scores.reduce((sum, score) => sum + score, 0);
-  return total / scores.length;
+function logen(user: User): void {
+  console.log(`Logging in user: ${user.username}`);
 }
 
-// Testing with 3-5 values:
-console.log(average(85, 90, 95));             
-console.log(average(100, 80, 60, 40, 70));     
+const validUser: User = {
+  username: "johndoe",
+  password: "securePassword123"
+}; // Property 'id' is missing in type '{ username: string; password: string; }' but required in type 'User'.
 
+logen(validUser);
+
+
+
+interface User {
+  username: string;
+  password: string;
+  email?: string; 
+}
+
+function login(user: User): void {
+  console.log(`Logging in: ${user.username} | Email: ${user.email ?? "N/A"}`);
+}
+
+login({
+  username: "alice",
+  password: "mypassword"
+});  // Argument of type '{ username: string; password: string; }' is not assignable to parameter of type 'User'.
+ // Property 'id' is missing in type '{ username: string; password: string; }' but required in type 'User'.
+
+login({
+  username: "bob",
+  password: "anotherpassword",
+  email: "bob@example.com"
+}); // Argument of type '{ username: string; password: string; email: string; }' is not assignable to parameter of type 'User'.
+  //Property 'id' is missing in type '{ username: string; password: string; email: string; }' but required in type 'User'.
+
+
+
+interface User {
+  readonly id: number;
+  username: string;
+  password: string;
+  email?: string;
+}
+
+const user: User = {
+  id: 101,
+  username: "charlie",
+  password: "password1"
+};
+
+user.id = 202; // Cannot assign to 'id' because it is a read-only property.
 export {};
