@@ -1,19 +1,33 @@
-function fullName(first, last) {
-    return first + " " + last;
+function echo(input) {
+    return input;
 }
-const name = fullName("maxamed", "c.qaadir");
-console.log(name);
-function registerUser(username, isAdmin, language = "en") {
-    console.log(`Username: ${username}, Is Admin: ${isAdmin}, Language: ${language}`);
+const strResult = echo("Hello TypeScript");
+const numResult = echo(42);
+const arrayResult = echo([1, 2, 3]);
+const objectResult = echo({ id: 1, name: "Alice" });
+console.log(strResult, numResult, arrayResult, objectResult);
+const textResult = {
+    status: "success",
+    data: "User created successfully"
+};
+const userResult = {
+    status: "success",
+    data: {
+        id: 101,
+        name: "Sarah"
+    }
+};
+console.log(textResult, userResult);
+// { status: 'success', data: 'User created successfully' } { status: 'success', data: { id: 101, name: 'Sarah' } }
+//3===================================================================================
+function first(items) {
+    return items[0];
 }
-registerUser("maxamed", true);
-function average(...scores) {
-    if (scores.length === 0)
-        return 0;
-    const total = scores.reduce((sum, score) => sum + score, 0);
-    return total / scores.length;
-}
-// Testing with 3-5 values:
-console.log(average(85, 90, 95));
-console.log(average(100, 80, 60, 40, 70));
+const firstNumber = first([10, 20, 30]);
+const firstString = first(["apple", "banana", "cherry"]);
+const firstObject = first([
+    { id: 1, role: "Admin" },
+    { id: 2, role: "User" }
+]);
+console.log(firstNumber, firstString, firstObject);
 export {};

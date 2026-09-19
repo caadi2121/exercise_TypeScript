@@ -1,58 +1,53 @@
-interface User {
-  username: string;
-  password: string;
+function echo<T>(input: T): T {
+  return input;
 }
 
-function logen(user: User): void {
-  console.log(`Logging in user: ${user.username}`);
+const strResult = echo("Hello TypeScript");
+
+const numResult = echo(42);
+
+const arrayResult = echo([1, 2, 3]);
+
+const objectResult = echo({ id: 1, name: "Alice" });
+console.log(strResult, numResult, arrayResult, objectResult)
+// Hello TypeScript 42 [ 1, 2, 3 ] { id: 1, name: 'Alice' }
+//2===================================================================
+interface ApiResult<T> {
+  status: string;
+  data: T;
 }
 
-const validUser: User = {
-  username: "johndoe",
-  password: "securePassword123"
-}; // Property 'id' is missing in type '{ username: string; password: string; }' but required in type 'User'.
-
-logen(validUser);
-
-
-
-interface User {
-  username: string;
-  password: string;
-  email?: string; 
-}
-
-function login(user: User): void {
-  console.log(`Logging in: ${user.username} | Email: ${user.email ?? "N/A"}`);
-}
-
-login({
-  username: "alice",
-  password: "mypassword"
-});  // Argument of type '{ username: string; password: string; }' is not assignable to parameter of type 'User'.
- // Property 'id' is missing in type '{ username: string; password: string; }' but required in type 'User'.
-
-login({
-  username: "bob",
-  password: "anotherpassword",
-  email: "bob@example.com"
-}); // Argument of type '{ username: string; password: string; email: string; }' is not assignable to parameter of type 'User'.
-  //Property 'id' is missing in type '{ username: string; password: string; email: string; }' but required in type 'User'.
-
-
-
-interface User {
-  readonly id: number;
-  username: string;
-  password: string;
-  email?: string;
-}
-
-const user: User = {
-  id: 101,
-  username: "charlie",
-  password: "password1"
+const textResult: ApiResult<string> = {
+  status: "success",
+  data: "User created successfully"
 };
 
-user.id = 202; // Cannot assign to 'id' because it is a read-only property.
+const userResult: ApiResult<{ id: number; name: string }> = {
+  status: "success",
+  data: {
+    id: 200,
+    name: "Sarah"
+  }
+};
+console.log(textResult, userResult)
+// { status: 'success', data: 'User created successfully' } { status: 'success', data: { id: 101, name: 'Sarah' } }
+
+//3===================================================================================
+
+
+function first<T>(items: T[]): T {
+  return items[0];
+}
+
+const firstNumber = first([10, 20, 30]);
+
+const firstString = first(["apple", "banana", "cherry"]);
+
+const firstObject = first([
+  { id: 1, role: "Admin" },
+  { id: 2, role: "User" }
+]);
+
+console.log(firstNumber, firstString, firstObject)
+// 10 apple { id: 1, role: 'Admin' }
 export {};
